@@ -1,0 +1,47 @@
+#root {
+  // 为了自定义的样式生效
+  height: 100%;
+  .ant-design-pro {
+    height: 100%;
+    .ant-layout {
+      height: 100%;
+      .ant-layout {
+        height: 100%;
+        .ant-layout-content {
+          height: 100%;
+          .login_container {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+.login_container {
+  width: 100%;
+  // min-height: 500px;
+  // height: 100%;
+  background-color: cornflowerblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .login_title {
+    color: #fff;
+    transform: translateY(-100px);
+  }
+  .login-form {
+    transform: translateY(-100px);
+    width: 30%;
+    background-color: #fff;
+    padding: 30px 20px
+  }
+}
+
+@media (max-width: 960px) {
+  .login_container {
+    .login-form {
+      width: 70%;
+    }
+  }
+}
