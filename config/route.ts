@@ -1,28 +1,35 @@
 export interface IChildRoute {
-  path: string,
-  name: string,
-  component: string
-};
+  path: string;
+  name: string;
+  component: string;
+  wrappers?: string[];
+}
 export interface IBastAFRoute {
-  routes?: IChildRoute[],
-  path: string,
-  component?: string,
-  name?: string,
-  icon?: string,
-  target?: boolean,
-  headerRender?: boolean,
-  footerRender?: boolean,
-  menuRender?: boolean,
-  menuHeaderRender?: boolean,
-  access?: string,
-  hideChildrenInMenu?: boolean,
-  hideInMenu?: boolean,
-  flatMenu?: boolean
-};
-const routes:Array<IBastAFRoute> = [
+  routes?: IChildRoute[];
+  path: string;
+  redirect?: string;
+  exact?: boolean;
+  component?: string;
+  name?: string;
+  icon?: string;
+  target?: boolean;
+  headerRender?: boolean;
+  footerRender?: boolean;
+  menuRender?: boolean;
+  menuHeaderRender?: boolean;
+  access?: string;
+  hideChildrenInMenu?: boolean;
+  hideInMenu?: boolean;
+  hideInBreadcrumb?: boolean;
+  flatMenu?: boolean;
+  wrappers?: string[];
+}
+const routes: Array<IBastAFRoute> = [
   {
     path: '/',
-    component: '@/pages/index'
+    component: '@/pages/index',
+    exact: true,
+    redirect: '/home',
   },
   {
     path: '/home',
@@ -36,7 +43,7 @@ const routes:Array<IBastAFRoute> = [
     component: '@/pages/login/index',
     headerRender: false,
     footerRender: false,
-    menuRender: false
+    menuRender: false,
   },
   {
     path: '/banner',
@@ -46,26 +53,32 @@ const routes:Array<IBastAFRoute> = [
       {
         path: '/banner/list',
         name: '轮播图列表',
-        component: '@/pages/banner/list'
-      }
+        component: '@/pages/banner/list',
+        wrappers: ['@/wrappers/auth'],
+      },
     ],
   },
   {
-    path: '/pro',
+    path: '/product',
     name: '产品管理',
     icon: 'UnorderedListOutlined',
     routes: [
       {
-        path: '/pro/recommend',
-        name: '推荐列表',
-        component: '@/pages/proManage/recommend'
+        path: '/product/list',
+        component: '@/pages/product/list',
+        name: '产品列表',
       },
       {
-        path: '/pro/seckill',
+        path: '/product/recommend',
+        name: '推荐列表',
+        component: '@/pages/product/recommend',
+      },
+      {
+        path: '/product/seckill',
         name: '秒杀列表',
-        component: '@/pages/proManage/seckill'
-      }
-    ]
-  }
+        component: '@/pages/product/seckill',
+      },
+    ],
+  },
 ];
 export default routes;

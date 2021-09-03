@@ -1,10 +1,16 @@
 import * as React from 'react';
-export interface IHomeProps {};
+import { connect, ILoginState } from 'umi';
+export interface IHomeProps {
+  adminname: string;
+}
 
-export default class Home extends React.PureComponent<IHomeProps> {
+class Home extends React.PureComponent<IHomeProps> {
   public render() {
-    return (
-      <div>首页</div>
-    )
+    return <div>首页-{this.props.adminname}</div>;
   }
 }
+export default connect(({ admin }: any) => {
+  return {
+    adminname: admin.adminname,
+  };
+})(Home);
